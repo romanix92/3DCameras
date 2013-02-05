@@ -67,13 +67,13 @@ namespace ipl
 		static ImagePtr from8BitGrayScale(int w, int h, uint8_t * data, bool deep = true);
 
 		/// \brief .
-		uint8_t * grayScaleShallow();
+		uint8_t * grayScale();
 
-		uint8_t * RGB24Shallow();
+		uint8_t * RGB24();
 
-		void grayScaleDeep(uint8_t * dst) const;
+		void grayScale(uint8_t * dst) const;
 
-		void RGB24Deep(uint8_t * dst) const;
+		void RGB24(uint8_t * dst) const;
 
 		~Image();
 

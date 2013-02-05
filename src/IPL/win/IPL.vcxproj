@@ -80,10 +80,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\3Party\fastcv\inc\fastcv.h" />
-    <ClInclude Include="Image.h" />
+    <ClInclude Include="..\Image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="..\Image.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\3Party\fastcv\inc\fastcv.inl" />
