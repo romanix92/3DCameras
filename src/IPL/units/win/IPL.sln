@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IPLunits", "IPLunits.vcxproj", "{D9D6D2C6-09BC-4FA5-8287-A07B5651F7A8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "IPL", "..\..\win\IPL.vcxproj", "{DEF9FCBE-02B8-41EA-96D1-A4BF63599BDB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cpptest", "..\..\..\3Party\cpptest\win\VisualStudio.NET\cpptest\cpptest.vcxproj", "{ED964EAB-86BC-4568-B3DE-66686C81BFF7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9D6D2C6-09BC-4FA5-8287-A07B5651F7A8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D9D6D2C6-09BC-4FA5-8287-A07B5651F7A8}.Debug|Win32.Build.0 = Debug|Win32
+		{D9D6D2C6-09BC-4FA5-8287-A07B5651F7A8}.Release|Win32.ActiveCfg = Release|Win32
+		{D9D6D2C6-09BC-4FA5-8287-A07B5651F7A8}.Release|Win32.Build.0 = Release|Win32
+		{DEF9FCBE-02B8-41EA-96D1-A4BF63599BDB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DEF9FCBE-02B8-41EA-96D1-A4BF63599BDB}.Debug|Win32.Build.0 = Debug|Win32
+		{DEF9FCBE-02B8-41EA-96D1-A4BF63599BDB}.Release|Win32.ActiveCfg = Release|Win32
+		{DEF9FCBE-02B8-41EA-96D1-A4BF63599BDB}.Release|Win32.Build.0 = Release|Win32
+		{ED964EAB-86BC-4568-B3DE-66686C81BFF7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{ED964EAB-86BC-4568-B3DE-66686C81BFF7}.Debug|Win32.Build.0 = Debug|Win32
+		{ED964EAB-86BC-4568-B3DE-66686C81BFF7}.Release|Win32.ActiveCfg = Release|Win32
+		{ED964EAB-86BC-4568-B3DE-66686C81BFF7}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
