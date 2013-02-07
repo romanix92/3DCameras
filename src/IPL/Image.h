@@ -31,62 +31,82 @@
 
 namespace ipl
 {
-	typedef Image * ImagePtr;
-	
-	/// \class Image
-	///
-	/// \brief Encapsulates all data, associated with a particular
+    typedef Image * ImagePtr;
+    
+    /// \class Image
+    ///
+    /// \brief Encapsulates all data, associated with a particular
     /// image and provides basic image processing operations.
-	class Image
-	{
-	public:
+    /// 
+    /// \todo Decide what functors should be in this class.
+    /// Decide if I need image cache and layers.
+    class Image
+    {
+    public:
 
-		/// \brief Default constructor. Creates an empty image.
-		Image();
+        /// \brief Default constructor. Creates an empty image.
+        Image();
 
-		/// \brief Copy constructor. Creates a deep copy of an image.
-		Image (const Image&);
+        /// \brief Copy constructor. Creates a deep copy of an image.
+        Image (const Image&);
 
-		/// \brief Assignment operator. Creates a deep copy of an image.
-		Image& opertor=(const Image& other);
+        /// \brief Assignment operator. Creates a deep copy of an image.
+        Image& operator=(const Image& other);
 
-		/// \brief Creates image from a bitmap file.
-		///
-		/// \param[in] fileName path to file with an image.
-		/// \return A pointer to a new image
-		static ImagePtr fromBitmap(const std::string& fileName);
+        /// \brief Creates image from a bitmap file.
+        ///
+        /// \param[in] fileName path to file with an image.
+        /// \return A pointer to a new image
+        static ImagePtr fromBitmap(const std::string& fileName);
 
-		/// \brief Creates image from a stream with bitmap data.
-		///
-		/// \param[in] source Stream with data.
-		/// \return A pointer to a new image
-		static ImagePtr fromBitmap(const std::istream& source);
-		
-		/// \brief Creates image an array with grayscale data.
-		///
-		static ImagePtr from8BitGrayScale(int w, int h, uint8_t * data, bool deep = true);
+        /// \brief Creates image from a stream with bitmap data.
+        ///
+        /// \param[in] source Stream with data.
+        /// \return A pointer to a new image
+        static ImagePtr fromBitmap(const std::istream& source);
+        
+        /// \brief Creates image from an array with grayscale data.
+        ///
+        /// \return A pointer to a new image
+        static ImagePtr from8BitGrayScale(int w, int h, const uint8_t * data, bool deep = true);
 
-		/// \brief .
-		uint8_t * grayScale();
+        /// \brief Creates image from camera.
+        ///
+        /// \return A pointer to a new image
+        static ImagePtr fromCamera();
+        
+        /// \brief Provides access to raw grayscale data
+        ///
+        /// \return raw 8-bit grayscale data.
+        uint8_t * grayScale();
 
-		uint8_t * RGB24();
+        /// \brief Provides access to raw RGB24 data
+        ///
+        /// \return raw 8-bit RGB24 data. NULL if there's no data
+        uint8_t * RGB24();
 
-		void grayScale(uint8_t * dst) const;
+        /// \brief Copies grayscale data
+        ///
+        /// \param[in] dst Destination buffer.
+        void grayScale(uint8_t * dst) const;
 
-		void RGB24(uint8_t * dst) const;
+        /// \brief Copies RGB24 data
+        ///
+        /// \param[in] dst Destination buffer.
+        void RGB24(uint8_t * dst) const;
 
-		~Image();
+        ~Image();
 
-	private:
-		
-		uint8_t * m_grayScale;
-		uint8_t * m_RGB24;
+    private:
+        
+        uint8_t * m_grayScale;
+        uint8_t * m_RGB24;
 
-		int m_width;
-		int m_height;
-	
-	}; // class Image
+        int m_width;
+        int m_height;
+    
+    }; // class Image
 
 } // namespace ipl
 
-#endif
+#endif //IPL_IMAGE_H

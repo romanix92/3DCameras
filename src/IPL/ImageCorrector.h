@@ -1,6 +1,6 @@
 /**
- * @file   Image.cpp
- * @brief  Implementation of an Image class.
+ * @file   ImageCorrector.h
+ * @brief  Calculation of homography for frame correction.
  * @author Roman Balashevych
  * @version 0.01
  *
@@ -21,3 +21,35 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301  USA
  */
+
+#ifndef IPL_IMAGE_CORRECTOR_H
+#define IPL_IMAGE_CORRECTOR_H
+
+#include "Image.h"
+
+namespace ipl
+{
+    class Homography;
+
+    /// \enum CorrectionAlgorithms
+    ///
+    /// \brief Available algorithms for image correction
+    enum CorrectionAlgorithm
+    {
+        FAST_Features = (uint8_t)0;
+    };
+
+    /// \class ImageCorrector
+    ///
+    /// \brief Calculates homography to compensate
+    /// the distortions made by the second camera using
+    /// a reference image.
+    /// 
+    /// \todo Think if this should be a class.
+    static class ImageCorrector
+    {
+        static Homography calculateCorrection(const ImagePtr reference, const ImagePtr distorted);
+    };
+} //namespace ipl
+
+#endif //IPL_IMAGE_CORRECTOR_H

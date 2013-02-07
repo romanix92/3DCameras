@@ -81,6 +81,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\3Party\fastcv\inc\fastcv.h" />
     <ClInclude Include="..\Image.h" />
+    <ClInclude Include="..\ImageCorrector.h" />
+    <ClInclude Include="..\ProjectiveTransformations.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Image.cpp" />
