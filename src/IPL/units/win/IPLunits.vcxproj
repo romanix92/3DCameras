@@ -50,7 +50,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\3Party\cpptest\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\..\3Party\cpptest\src;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -78,15 +78,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="test_entry.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\3Party\cpptest\win\VisualStudio.NET\cpptest\cpptest.vcxproj">
       <Project>{ed964eab-86bc-4568-b3de-66686c81bff7}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\win\IPL.vcxproj">
       <Project>{def9fcbe-02b8-41ea-96d1-a4bf63599bdb}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\ImageTests.cpp" />
+    <ClCompile Include="..\test_entry.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\ImageTests.h" />
+    <ClInclude Include="..\TestUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -28,11 +28,30 @@
 #include <string>
 #include <fstream>
 #include <stdint.h>
+#include <memory>
 
 namespace ipl
 {
-    typedef Image * ImagePtr;
+    class Image;
+    typedef std::auto_ptr<Image> ImagePtr;
     
+    /// \struct ImageSize
+    ///
+    /// \brief Represents width and height of an image.
+    struct ImageSize
+    {
+        /// \brief Initializer
+        ImageSize(uint16_t width, uint16_t height);
+
+        /// \brief Initializes with zero values
+        ImageSize();
+
+        bool operator == (ImageSize other);
+
+        uint16_t w; /// width
+        uint16_t h; /// height
+    };
+
     /// \class Image
     ///
     /// \brief Encapsulates all data, associated with a particular
@@ -65,10 +84,15 @@ namespace ipl
         /// \return A pointer to a new image
         static ImagePtr fromBitmap(const std::istream& source);
         
-        /// \brief Creates image from an array with grayscale data.
+        /// \brief Creates image from an array with 8-bit grayscale data.
         ///
         /// \return A pointer to a new image
-        static ImagePtr from8BitGrayScale(int w, int h, const uint8_t * data, bool deep = true);
+        static ImagePtr fromGrayData(ImageSize size, const uint8_t * data, bool deep = true);
+
+        /// \brief Creates image from an array with RGB24 data.
+        ///
+        /// \return A pointer to a new image
+        static ImagePtr fromRGB24Data(ImageSize size, const uint8_t * data, bool deep = true);
 
         /// \brief Creates image from camera.
         ///
@@ -98,12 +122,12 @@ namespace ipl
         ~Image();
 
     private:
-        
+        void copyImage(const Image& other);
+
         uint8_t * m_grayScale;
         uint8_t * m_RGB24;
 
-        int m_width;
-        int m_height;
+        ImageSize m_size;
     
     }; // class Image
 

@@ -47,18 +47,14 @@ namespace ipl
         /// in row-major order.
         ///
         /// \param[in] src Source data.
-        /// \param[in] srcWidth source width.
-        /// \param[in] srcHeight source height.
+        /// \param[in] srcSize source image size.
         /// \param[out] dst destination buffer.
-        /// \param[in] dstWidth destination width
-        /// \param[in] dstHeight dest. height
+        /// \param[in] dstSize destination size.
         /// \param[in] homography projective Transformation.
         static void bilinearWarpGray(const uint8_t * src, 
-                                     unsigned int srcWidth, 
-                                     unsigned int srcHeight, 
+                                     ImageSize srcSize, 
                                      uint8_t *dst, 
-                                     unsigned int dstWidth, 
-                                     unsigned int dstHeight, 
+                                     ImageSize dstSize, 
                                      const Homography& homography);
 
     }; //class ProjectiveTransformations
