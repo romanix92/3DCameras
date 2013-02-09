@@ -48,7 +48,13 @@ namespace ipl
     /// \todo Think if this should be a class.
     static class ImageCorrector
     {
-        static Homography calculateCorrection(const ImagePtr reference, const ImagePtr distorted);
+    public:
+        /// \brief Find a homography to warp a frame so, that it
+        /// would be as if it was taken from a well-positioned camera.
+        /// NVI (template method) pattern
+        static Homography calculateCorrection(const ImagePtr reference, const ImagePtr distorted, CorrectionAlgorithm);
+    protected:
+        static virtual Homography FASTCorrection(const ImagePtr reference, const ImagePtr distorted);
     };
 } //namespace ipl
 

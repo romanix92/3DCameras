@@ -90,6 +90,7 @@
     <ClCompile Include="..\test_entry.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\ImageCorrectorTest.h" />
     <ClInclude Include="..\ImageTests.h" />
     <ClInclude Include="..\TestUtils.h" />
   </ItemGroup>

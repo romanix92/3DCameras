@@ -26,7 +26,7 @@
 #define IPL_PROJ_TRANS_H
 
 #include "Image.h"
-
+/// \todo Do I really need it?
 namespace ipl
 {
     class Homography;
