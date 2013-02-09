@@ -17,6 +17,7 @@ void ImageTest::grayDataTest()
 {
     uint8_t srcData[] = { 0, 64, 128, 255 };
     ImagePtr im = Image::fromGrayData(ImageSize(2, 2), srcData);
+    TEST_ASSERT_MSG(im.get() != NULL , "Image not created. NULL pointer returned");
     TEST_ASSERT_MSG(arraysEqual(srcData, im->grayScale(), 4), "Source arrays differs from image data");
 }
 
@@ -27,6 +28,7 @@ void ImageTest::RGBDataTest()
                           0, 255, 0,
                           0, 0, 0 };
     ImagePtr im = Image::fromRGB24Data(ImageSize(2, 2), srcData);
+    TEST_ASSERT_MSG(im.get() != NULL , "Image not created. NULL pointer returned");
     TEST_ASSERT_MSG(arraysEqual(srcData, im->RGB24(), 12), "Source arrays differs from image data");
 }
 
@@ -34,6 +36,7 @@ void ImageTest::grayCopyTest()
 {
     uint8_t data[] = { 0, 64, 128, 255 };
     ImagePtr im = Image::fromGrayData(ImageSize(2, 2), data);
+    TEST_ASSERT_MSG(im.get() != NULL , "Image not created. NULL pointer returned");
     memset(data, 0, 4 * sizeof(uint8_t));
     im->grayScale(data);
     TEST_ASSERT_MSG(arraysEqual(data, im->grayScale(), 4), "Grayscale data copied incorrectly");
@@ -46,8 +49,9 @@ void ImageTest::RGBCopyTest()
                        0, 255, 0,
                        0, 0, 0 };
     ImagePtr im = Image::fromRGB24Data(ImageSize(2, 2), data);
+    TEST_ASSERT_MSG(im.get() != NULL , "Image not created. NULL pointer returned");
     memset(data, 0, 12 * sizeof(uint8_t));
-    im->grayScale(data);
+    im->RGB24(data);
     TEST_ASSERT_MSG(arraysEqual(data, im->RGB24(), 12), "RGB data copied incorrectly");
 }
 
@@ -58,11 +62,13 @@ void ImageTest::ImageCopyTest()
                           0, 255, 0,
                           0, 0, 0 };
     ImagePtr im1 = Image::fromRGB24Data(ImageSize(2, 2), RGBData);
+    TEST_ASSERT_MSG(im1.get() != NULL , "Image not created. NULL pointer returned");
     Image im1Copy(*im1);
     TEST_ASSERT_MSG(arraysEqual(im1->RGB24(), im1Copy.RGB24(), 12), "RGB image copied incorrectly");
 
     uint8_t grayData[] = { 0, 64, 128, 255 };
     ImagePtr im2 = Image::fromGrayData(ImageSize(2, 2), RGBData);
+    TEST_ASSERT_MSG(im2.get() != NULL , "Image not created. NULL pointer returned");
     Image im2copy = *im2;
     TEST_ASSERT_MSG(arraysEqual(im2->grayScale(), im2copy.grayScale(), 4), "Grayscale image copied incorrectly");
 }

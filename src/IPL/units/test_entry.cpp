@@ -13,5 +13,5 @@ int main()
     //ts.add(auto_ptr<Test::Suite>(new TestSuite3));
 
     Test::TextOutput output(Test::TextOutput::Verbose);
-    return ts.run(output);
+    return ts.run(output, false);
 }

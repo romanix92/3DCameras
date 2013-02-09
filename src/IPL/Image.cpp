@@ -34,6 +34,8 @@ namespace ipl
 
     Image::Image(const Image& other)
     {
+        m_grayScale = NULL;
+        m_RGB24 = NULL;
         if (&other != this)
             copyImage(other);
     }
@@ -71,7 +73,7 @@ namespace ipl
             }
             memcpy(m_grayScale, other.m_grayScale, pixNum * sizeof(uint8_t));
         }
-        else
+        else if (m_grayScale)
             delete[] m_grayScale;
 
         if (other.m_RGB24)
@@ -85,7 +87,7 @@ namespace ipl
             }
             memcpy(m_RGB24, other.m_RGB24, 3 * pixNum * sizeof(uint8_t));
         }
-        else
+        else if (m_RGB24)
             delete[] m_RGB24;
     }
 
@@ -101,22 +103,38 @@ namespace ipl
 
     void Image::grayScale(uint8_t * dst) const
     {
-        memcpy(dst, m_grayScale, sizeof(uint8_t) * m_size.w * m_size.h);
+        if (m_grayScale)
+            memcpy(dst, m_grayScale, sizeof(uint8_t) * m_size.w * m_size.h);
     }
 
     void Image::RGB24(uint8_t * dst) const
     {
-        memcpy(dst, m_RGB24, 3 * sizeof(uint8_t) * m_size.w * m_size.h);
+        if (m_RGB24)
+            memcpy(dst, m_RGB24, 3 * sizeof(uint8_t) * m_size.w * m_size.h);
     }
 
     ImagePtr Image::fromGrayData(ImageSize size, const uint8_t * data, bool deep /* = true */)
     {
-        return (ImagePtr)NULL;
+        ImagePtr res = (ImagePtr)new Image();
+        res->m_size = size;
+        res->m_grayScale = new uint8_t[size.w * size.h];
+        if (deep)
+            memcpy(res->m_grayScale, data, size.w * size.h * sizeof(uint8_t));
+        else
+            res->m_grayScale = const_cast<uint8_t*>(data);
+        return res;
     }
 
     ImagePtr Image::fromRGB24Data(ImageSize size, const uint8_t * data, bool deep /* = true */)
     {
-        return (ImagePtr)NULL;
+        ImagePtr res = (ImagePtr)new Image();
+        res->m_size = size;
+        res->m_RGB24 = new uint8_t[3 * size.w * size.h];
+        if (deep)
+            memcpy(res->m_RGB24, data, 3 * size.w * size.h * sizeof(uint8_t));
+        else
+            res->m_RGB24 = const_cast<uint8_t*>(data);
+        return res;
     }
 
     ImageSize::ImageSize()
