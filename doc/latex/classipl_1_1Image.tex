@@ -1,0 +1,230 @@
+\hypertarget{classipl_1_1Image}{
+\section{ipl::Image Class Reference}
+\label{classipl_1_1Image}\index{ipl::Image@{ipl::Image}}
+}
+
+
+Encapsulates all data, associated with a particular image and provides basic image processing operations.  
+
+
+
+
+{\ttfamily \#include $<$Image.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classipl_1_1Image_a48b52d90c714c819ad6cddbc2768077f}{
+\hyperlink{classipl_1_1Image_a48b52d90c714c819ad6cddbc2768077f}{Image} ()}
+\label{classipl_1_1Image_a48b52d90c714c819ad6cddbc2768077f}
+
+\begin{DoxyCompactList}\small\item\em Default constructor. Creates an empty image. \end{DoxyCompactList}\item 
+\hypertarget{classipl_1_1Image_a43110cf78593d35fb289f5ff5ab93905}{
+\hyperlink{classipl_1_1Image_a43110cf78593d35fb289f5ff5ab93905}{Image} (const \hyperlink{classipl_1_1Image}{Image} \&)}
+\label{classipl_1_1Image_a43110cf78593d35fb289f5ff5ab93905}
+
+\begin{DoxyCompactList}\small\item\em Copy constructor. Creates a deep copy of an image. \end{DoxyCompactList}\item 
+\hypertarget{classipl_1_1Image_a802e130e12e6bcd8961c3aab01fd9dda}{
+\hyperlink{classipl_1_1Image}{Image} \& \hyperlink{classipl_1_1Image_a802e130e12e6bcd8961c3aab01fd9dda}{operator=} (const \hyperlink{classipl_1_1Image}{Image} \&other)}
+\label{classipl_1_1Image_a802e130e12e6bcd8961c3aab01fd9dda}
+
+\begin{DoxyCompactList}\small\item\em Assignment operator. Creates a deep copy of an image. \end{DoxyCompactList}\item 
+uint8\_\-t $\ast$ \hyperlink{classipl_1_1Image_a5ffdb8d6366aaab7c1927a440a1746e6}{grayScale} ()
+\begin{DoxyCompactList}\small\item\em Provides access to raw grayscale data. \end{DoxyCompactList}\item 
+uint8\_\-t $\ast$ \hyperlink{classipl_1_1Image_afd049935ba96ca692b0275e58a65d1c1}{RGB24} ()
+\begin{DoxyCompactList}\small\item\em Provides access to raw RGB24 data. \end{DoxyCompactList}\item 
+void \hyperlink{classipl_1_1Image_adc0d68dfc4be8323ecc3332e01f45b27}{grayScale} (uint8\_\-t $\ast$dst) const 
+\begin{DoxyCompactList}\small\item\em Copies grayscale data. \end{DoxyCompactList}\item 
+void \hyperlink{classipl_1_1Image_a85de167997e1dd886f6efd826312a49a}{RGB24} (uint8\_\-t $\ast$dst) const 
+\begin{DoxyCompactList}\small\item\em Copies RGB24 data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static ImagePtr \hyperlink{classipl_1_1Image_a79eb7a364c397be0fa9f7d8d792004b7}{fromBitmap} (const std::string \&fileName)
+\begin{DoxyCompactList}\small\item\em Creates image from a bitmap file. \end{DoxyCompactList}\item 
+static ImagePtr \hyperlink{classipl_1_1Image_a149ac729fa75f1b9b752ed2dcf35cbdf}{fromBitmap} (const std::istream \&source)
+\begin{DoxyCompactList}\small\item\em Creates image from a stream with bitmap data. \end{DoxyCompactList}\item 
+static ImagePtr \hyperlink{classipl_1_1Image_afd630b7530768e254cef83887bc41515}{fromGrayData} (\hyperlink{structipl_1_1ImageSize}{ImageSize} size, const uint8\_\-t $\ast$data, bool deep=true)
+\begin{DoxyCompactList}\small\item\em Creates image from an array with 8-\/bit grayscale data. \end{DoxyCompactList}\item 
+static ImagePtr \hyperlink{classipl_1_1Image_ae3344876efe13b7412f562aa44ace89f}{fromRGB24Data} (\hyperlink{structipl_1_1ImageSize}{ImageSize} size, const uint8\_\-t $\ast$data, bool deep=true)
+\begin{DoxyCompactList}\small\item\em Creates image from an array with RGB24 data. \end{DoxyCompactList}\item 
+static ImagePtr \hyperlink{classipl_1_1Image_abafd7caada828ae76251efa727729e2a}{fromCamera} ()
+\begin{DoxyCompactList}\small\item\em Creates image from camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Encapsulates all data, associated with a particular image and provides basic image processing operations. 
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000001}{Todo}]Decide what functors should be in this class. Decide if I need image cache and layers. \end{Desc}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classipl_1_1Image_a79eb7a364c397be0fa9f7d8d792004b7}{
+\index{ipl::Image@{ipl::Image}!fromBitmap@{fromBitmap}}
+\index{fromBitmap@{fromBitmap}!ipl::Image@{ipl::Image}}
+\subsubsection[{fromBitmap}]{\setlength{\rightskip}{0pt plus 5cm}static ImagePtr ipl::Image::fromBitmap (
+\begin{DoxyParamCaption}
+\item[{const std::string \&}]{fileName}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{classipl_1_1Image_a79eb7a364c397be0fa9f7d8d792004b7}
+
+
+Creates image from a bitmap file. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em fileName} & path to file with an image. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to a new image 
+\end{DoxyReturn}
+\hypertarget{classipl_1_1Image_a149ac729fa75f1b9b752ed2dcf35cbdf}{
+\index{ipl::Image@{ipl::Image}!fromBitmap@{fromBitmap}}
+\index{fromBitmap@{fromBitmap}!ipl::Image@{ipl::Image}}
+\subsubsection[{fromBitmap}]{\setlength{\rightskip}{0pt plus 5cm}static ImagePtr ipl::Image::fromBitmap (
+\begin{DoxyParamCaption}
+\item[{const std::istream \&}]{source}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{classipl_1_1Image_a149ac729fa75f1b9b752ed2dcf35cbdf}
+
+
+Creates image from a stream with bitmap data. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em source} & Stream with data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to a new image 
+\end{DoxyReturn}
+\hypertarget{classipl_1_1Image_abafd7caada828ae76251efa727729e2a}{
+\index{ipl::Image@{ipl::Image}!fromCamera@{fromCamera}}
+\index{fromCamera@{fromCamera}!ipl::Image@{ipl::Image}}
+\subsubsection[{fromCamera}]{\setlength{\rightskip}{0pt plus 5cm}static ImagePtr ipl::Image::fromCamera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{classipl_1_1Image_abafd7caada828ae76251efa727729e2a}
+
+
+Creates image from camera. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to a new image 
+\end{DoxyReturn}
+\hypertarget{classipl_1_1Image_afd630b7530768e254cef83887bc41515}{
+\index{ipl::Image@{ipl::Image}!fromGrayData@{fromGrayData}}
+\index{fromGrayData@{fromGrayData}!ipl::Image@{ipl::Image}}
+\subsubsection[{fromGrayData}]{\setlength{\rightskip}{0pt plus 5cm}ImagePtr ipl::Image::fromGrayData (
+\begin{DoxyParamCaption}
+\item[{{\bf ImageSize}}]{size, }
+\item[{const uint8\_\-t $\ast$}]{data, }
+\item[{bool}]{deep = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{classipl_1_1Image_afd630b7530768e254cef83887bc41515}
+
+
+Creates image from an array with 8-\/bit grayscale data. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to a new image 
+\end{DoxyReturn}
+\hypertarget{classipl_1_1Image_ae3344876efe13b7412f562aa44ace89f}{
+\index{ipl::Image@{ipl::Image}!fromRGB24Data@{fromRGB24Data}}
+\index{fromRGB24Data@{fromRGB24Data}!ipl::Image@{ipl::Image}}
+\subsubsection[{fromRGB24Data}]{\setlength{\rightskip}{0pt plus 5cm}ImagePtr ipl::Image::fromRGB24Data (
+\begin{DoxyParamCaption}
+\item[{{\bf ImageSize}}]{size, }
+\item[{const uint8\_\-t $\ast$}]{data, }
+\item[{bool}]{deep = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{classipl_1_1Image_ae3344876efe13b7412f562aa44ace89f}
+
+
+Creates image from an array with RGB24 data. 
+
+\begin{DoxyReturn}{Returns}
+A pointer to a new image 
+\end{DoxyReturn}
+\hypertarget{classipl_1_1Image_adc0d68dfc4be8323ecc3332e01f45b27}{
+\index{ipl::Image@{ipl::Image}!grayScale@{grayScale}}
+\index{grayScale@{grayScale}!ipl::Image@{ipl::Image}}
+\subsubsection[{grayScale}]{\setlength{\rightskip}{0pt plus 5cm}void ipl::Image::grayScale (
+\begin{DoxyParamCaption}
+\item[{uint8\_\-t $\ast$}]{dst}
+\end{DoxyParamCaption}
+) const}}
+\label{classipl_1_1Image_adc0d68dfc4be8323ecc3332e01f45b27}
+
+
+Copies grayscale data. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em dst} & Destination buffer. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classipl_1_1Image_a5ffdb8d6366aaab7c1927a440a1746e6}{
+\index{ipl::Image@{ipl::Image}!grayScale@{grayScale}}
+\index{grayScale@{grayScale}!ipl::Image@{ipl::Image}}
+\subsubsection[{grayScale}]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t $\ast$ ipl::Image::grayScale (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classipl_1_1Image_a5ffdb8d6366aaab7c1927a440a1746e6}
+
+
+Provides access to raw grayscale data. 
+
+\begin{DoxyReturn}{Returns}
+raw 8-\/bit grayscale data. 
+\end{DoxyReturn}
+\hypertarget{classipl_1_1Image_afd049935ba96ca692b0275e58a65d1c1}{
+\index{ipl::Image@{ipl::Image}!RGB24@{RGB24}}
+\index{RGB24@{RGB24}!ipl::Image@{ipl::Image}}
+\subsubsection[{RGB24}]{\setlength{\rightskip}{0pt plus 5cm}uint8\_\-t $\ast$ ipl::Image::RGB24 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{classipl_1_1Image_afd049935ba96ca692b0275e58a65d1c1}
+
+
+Provides access to raw RGB24 data. 
+
+\begin{DoxyReturn}{Returns}
+raw 8-\/bit RGB24 data. NULL if there's no data 
+\end{DoxyReturn}
+\hypertarget{classipl_1_1Image_a85de167997e1dd886f6efd826312a49a}{
+\index{ipl::Image@{ipl::Image}!RGB24@{RGB24}}
+\index{RGB24@{RGB24}!ipl::Image@{ipl::Image}}
+\subsubsection[{RGB24}]{\setlength{\rightskip}{0pt plus 5cm}void ipl::Image::RGB24 (
+\begin{DoxyParamCaption}
+\item[{uint8\_\-t $\ast$}]{dst}
+\end{DoxyParamCaption}
+) const}}
+\label{classipl_1_1Image_a85de167997e1dd886f6efd826312a49a}
+
+
+Copies RGB24 data. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em dst} & Destination buffer. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+src/IPL/\hyperlink{Image_8h}{Image.h}\item 
+src/IPL/\hyperlink{Image_8cpp}{Image.cpp}\end{DoxyCompactItemize}
