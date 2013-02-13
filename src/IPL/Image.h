@@ -35,6 +35,16 @@ namespace ipl
     class Image;
     typedef std::auto_ptr<Image> ImagePtr;
     
+    /// \enum ImageFormat
+    /// \brief Available image formats.
+    enum ImageFormat
+    {
+        FORMAT_GRAY = (uint8_t)0, /// 8-bit grayScale
+        FORMAT_RGB24,             /// Bitmap 24
+        FORMAT_RGB565,            /// 16 bit bitmap
+        FORMAT_YUV420SP           /// Android camera preview format. 12 bpp.
+    };
+
     /// \struct ImageSize
     ///
     /// \brief Represents width and height of an image.
@@ -83,51 +93,46 @@ namespace ipl
         /// \param[in] source Stream with data.
         /// \return A pointer to a new image
         static ImagePtr fromBitmap(const std::istream& source);
-        
-        /// \brief Creates image from an array with 8-bit grayscale data.
-        ///
-        /// \return A pointer to a new image
-        static ImagePtr fromGrayData(ImageSize size, const uint8_t * data, bool deep = true);
 
-        /// \brief Creates image from an array with RGB24 data.
+        /// \brief Creates image from an array with data.
         ///
         /// \return A pointer to a new image
-        static ImagePtr fromRGB24Data(ImageSize size, const uint8_t * data, bool deep = true);
+        static ImagePtr fromMemory(ImageSize size, 
+                                   const uint8_t * data,
+                                   ImageFormat format,
+                                   bool deep = true);
 
         /// \brief Creates image from camera.
         ///
         /// \return A pointer to a new image
         static ImagePtr fromCamera();
         
-        /// \brief Provides access to raw grayscale data
+        /// \brief Get number of bits per pixel for a
+        /// format f.
         ///
-        /// \return raw 8-bit grayscale data.
-        uint8_t * grayScale();
+        /// \param[in] f A supported format
+        /// \return
+        static uint8_t formatDepth(ImageFormat f);
+        /// \brief Provides access to raw data
+        ///
+        /// \return a pointer to internal data buffer.
+        uint8_t * data();
 
-        /// \brief Provides access to raw RGB24 data
+        /// \brief Copies raw data
         ///
-        /// \return raw 8-bit RGB24 data. NULL if there's no data
-        uint8_t * RGB24();
-
-        /// \brief Copies grayscale data
-        ///
-        /// \param[in] dst Destination buffer.
-        void grayScale(uint8_t * dst) const;
-
-        /// \brief Copies RGB24 data
-        ///
-        /// \param[in] dst Destination buffer.
-        void RGB24(uint8_t * dst) const;
+        /// \param[out] dst A buffer to which the data will be copied.
+        /// dst must be allocated before being passed to this method.
+        void data(uint8_t * dst) const;
 
         ~Image();
 
     private:
         void copyImage(const Image& other);
 
-        uint8_t * m_grayScale;
-        uint8_t * m_RGB24;
-
+        uint8_t * m_data;
         ImageSize m_size;
+        ImageFormat m_format;
+
     
     }; // class Image
 

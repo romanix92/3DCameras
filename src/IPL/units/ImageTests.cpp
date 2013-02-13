@@ -6,14 +6,12 @@ using namespace ipl;
 
 ImageTest::ImageTest()
 {
-    TEST_ADD(ImageTest::grayCopyTest);
-    TEST_ADD(ImageTest::grayDataTest);
+
     TEST_ADD(ImageTest::ImageCopyTest);
-    TEST_ADD(ImageTest::RGBCopyTest);
-    TEST_ADD(ImageTest::RGBDataTest);
+
 }
 
-void ImageTest::grayDataTest()
+/*void ImageTest::grayDataTest()
 {
     uint8_t srcData[] = { 0, 64, 128, 255 };
     ImagePtr im = Image::fromGrayData(ImageSize(2, 2), srcData);
@@ -53,22 +51,16 @@ void ImageTest::RGBCopyTest()
     memset(data, 0, 12 * sizeof(uint8_t));
     im->RGB24(data);
     TEST_ASSERT_MSG(arraysEqual(data, im->RGB24(), 12), "RGB data copied incorrectly");
-}
+}*/
 
 void ImageTest::ImageCopyTest()
 {
-    uint8_t RGBData[] = { 255, 0, 0,
-                          0, 0, 255,
-                          0, 255, 0,
-                          0, 0, 0 };
-    ImagePtr im1 = Image::fromRGB24Data(ImageSize(2, 2), RGBData);
+    uint8_t data[] = {255, 0, 0,
+                      0, 0, 255,
+                      0, 255, 0,
+                      0, 0, 0 };
+    ImagePtr im1 = Image::fromMemory(ImageSize(3, 4), data, FORMAT_GRAY);
     TEST_ASSERT_MSG(im1.get() != NULL , "Image not created. NULL pointer returned");
     Image im1Copy(*im1);
-    TEST_ASSERT_MSG(arraysEqual(im1->RGB24(), im1Copy.RGB24(), 12), "RGB image copied incorrectly");
-
-    uint8_t grayData[] = { 0, 64, 128, 255 };
-    ImagePtr im2 = Image::fromGrayData(ImageSize(2, 2), RGBData);
-    TEST_ASSERT_MSG(im2.get() != NULL , "Image not created. NULL pointer returned");
-    Image im2copy = *im2;
-    TEST_ASSERT_MSG(arraysEqual(im2->grayScale(), im2copy.grayScale(), 4), "Grayscale image copied incorrectly");
+    TEST_ASSERT_MSG(arraysEqual(im1->data(), im1Copy.data(), 12), "Image copied incorrectly");
 }

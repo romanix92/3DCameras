@@ -28,22 +28,19 @@ namespace ipl
 {
     Image::Image()
     {
-        m_grayScale = NULL;
-        m_RGB24 = NULL;
+        m_data = NULL;
     }
 
     Image::Image(const Image& other)
     {
-        m_grayScale = NULL;
-        m_RGB24 = NULL;
+        m_data = NULL;
         if (&other != this)
             copyImage(other);
     }
 
     Image::~Image()
     {
-        delete[] m_RGB24;
-        delete[] m_grayScale;
+        delete[] m_data;
     }
 
     Image& Image::operator=(const Image& other)
@@ -62,80 +59,69 @@ namespace ipl
             needRealloc = true;
         m_size = other.m_size;
 
-        if (other.m_grayScale)
+        if (other.m_data)
         {
             if (needRealloc)
             {
-                if(m_grayScale)
-                    realloc(m_grayScale, sizeof(uint8_t) * pixNum);
+                if(m_data)
+                    realloc(m_data, sizeof(uint8_t) * pixNum);
                 else
-                    m_grayScale = new uint8_t[pixNum];
+                    m_data = new uint8_t[pixNum];
             }
-            memcpy(m_grayScale, other.m_grayScale, pixNum * sizeof(uint8_t));
+            memcpy(m_data, other.m_data, pixNum * sizeof(uint8_t));
         }
-        else if (m_grayScale)
-            delete[] m_grayScale;
+        else if (m_data)
+            delete[] m_data;
+    }
 
-        if (other.m_RGB24)
+    uint8_t * Image::data()
+    {
+        return m_data;
+    }
+
+
+    void Image::data(uint8_t * dst) const
+    {
+        if (m_data)
+            memcpy(dst, m_data, sizeof(uint8_t) * m_size.w * m_size.h);
+    }
+
+    ImagePtr Image::fromMemory(ImageSize size,
+                               const uint8_t * data, 
+                               ImageFormat format,
+                               bool deep /* = true */)
+    {
+        ImagePtr res = (ImagePtr)new Image();
+        res->m_size = size;
+        const size_t byteNum = (size.w * size.h * formatDepth(format)) >> 3;
+        res->m_data = new uint8_t[byteNum];
+        if (deep)
+            memcpy(res->m_data, data, byteNum);
+        else
+            res->m_data = const_cast<uint8_t*>(data);
+            
+        return res;
+        return ImagePtr(NULL);
+    }
+
+    uint8_t Image::formatDepth(ImageFormat f)
+    {
+        switch (f)
         {
-            if (needRealloc)
-            {
-                if(m_RGB24)
-                    realloc(m_RGB24, 3 * sizeof(uint8_t) * pixNum);
-                else
-                    m_RGB24 = new uint8_t[3 * pixNum];
-            }
-            memcpy(m_RGB24, other.m_RGB24, 3 * pixNum * sizeof(uint8_t));
+        case FORMAT_GRAY:
+            return 8;
+        case FORMAT_YUV420SP:
+            return 12;
+        case FORMAT_RGB565:
+            return 16;
+        case FORMAT_RGB24:
+            return 24;
+        default:
+            return 0;
         }
-        else if (m_RGB24)
-            delete[] m_RGB24;
+
     }
 
-    uint8_t * Image::grayScale()
-    {
-        return m_grayScale;
-    }
-
-    uint8_t * Image::RGB24()
-    {
-        return m_RGB24;
-    }
-
-    void Image::grayScale(uint8_t * dst) const
-    {
-        if (m_grayScale)
-            memcpy(dst, m_grayScale, sizeof(uint8_t) * m_size.w * m_size.h);
-    }
-
-    void Image::RGB24(uint8_t * dst) const
-    {
-        if (m_RGB24)
-            memcpy(dst, m_RGB24, 3 * sizeof(uint8_t) * m_size.w * m_size.h);
-    }
-
-    ImagePtr Image::fromGrayData(ImageSize size, const uint8_t * data, bool deep /* = true */)
-    {
-        ImagePtr res = (ImagePtr)new Image();
-        res->m_size = size;
-        res->m_grayScale = new uint8_t[size.w * size.h];
-        if (deep)
-            memcpy(res->m_grayScale, data, size.w * size.h * sizeof(uint8_t));
-        else
-            res->m_grayScale = const_cast<uint8_t*>(data);
-        return res;
-    }
-
-    ImagePtr Image::fromRGB24Data(ImageSize size, const uint8_t * data, bool deep /* = true */)
-    {
-        ImagePtr res = (ImagePtr)new Image();
-        res->m_size = size;
-        res->m_RGB24 = new uint8_t[3 * size.w * size.h];
-        if (deep)
-            memcpy(res->m_RGB24, data, 3 * size.w * size.h * sizeof(uint8_t));
-        else
-            res->m_RGB24 = const_cast<uint8_t*>(data);
-        return res;
-    }
 
     ImageSize::ImageSize()
     {
