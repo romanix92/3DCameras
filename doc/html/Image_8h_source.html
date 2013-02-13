@@ -63,61 +63,67 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00035"></a>00035     <span class="keyword">class </span>Image;
 <a name="l00036"></a>00036     <span class="keyword">typedef</span> std::auto_ptr&lt;Image&gt; ImagePtr;
 <a name="l00037"></a>00037     
-<a name="l00041"></a><a class="code" href="structipl_1_1ImageSize.html">00041</a>     <span class="keyword">struct </span><a class="code" href="structipl_1_1ImageSize.html" title="Represents width and height of an image.">ImageSize</a>
-<a name="l00042"></a>00042     {
-<a name="l00044"></a>00044         <a class="code" href="structipl_1_1ImageSize.html#a40ad507610dd2955d896c94a218061fd" title="Initializes with zero values.">ImageSize</a>(uint16_t width, uint16_t height);
-<a name="l00045"></a>00045 
-<a name="l00047"></a>00047         <a class="code" href="structipl_1_1ImageSize.html#a40ad507610dd2955d896c94a218061fd" title="Initializes with zero values.">ImageSize</a>();
-<a name="l00048"></a>00048 
-<a name="l00049"></a>00049         <span class="keywordtype">bool</span> operator == (<a class="code" href="structipl_1_1ImageSize.html" title="Represents width and height of an image.">ImageSize</a> other);
-<a name="l00050"></a>00050 
-<a name="l00051"></a>00051         uint16_t w; 
-<a name="l00052"></a><a class="code" href="structipl_1_1ImageSize.html#a31ec0e02678a4114a95076a60a2a24af">00052</a>         uint16_t <a class="code" href="structipl_1_1ImageSize.html#a31ec0e02678a4114a95076a60a2a24af" title="width">h</a>; 
-<a name="l00053"></a>00053     };
-<a name="l00054"></a>00054 
-<a name="l00062"></a><a class="code" href="classipl_1_1Image.html">00062</a>     <span class="keyword">class </span><a class="code" href="classipl_1_1Image.html" title="Encapsulates all data, associated with a particular image and provides basic image processing operati...">Image</a>
-<a name="l00063"></a>00063     {
-<a name="l00064"></a>00064     <span class="keyword">public</span>:
-<a name="l00065"></a>00065 
-<a name="l00067"></a>00067         <a class="code" href="classipl_1_1Image.html#a48b52d90c714c819ad6cddbc2768077f" title="Default constructor. Creates an empty image.">Image</a>();
-<a name="l00068"></a>00068 
-<a name="l00070"></a>00070         <a class="code" href="classipl_1_1Image.html#a48b52d90c714c819ad6cddbc2768077f" title="Default constructor. Creates an empty image.">Image</a> (<span class="keyword">const</span> <a class="code" href="classipl_1_1Image.html" title="Encapsulates all data, associated with a particular image and provides basic image processing operati...">Image</a>&amp;);
-<a name="l00071"></a>00071 
-<a name="l00073"></a>00073         <a class="code" href="classipl_1_1Image.html" title="Encapsulates all data, associated with a particular image and provides basic image processing operati...">Image</a>&amp; <a class="code" href="classipl_1_1Image.html#a802e130e12e6bcd8961c3aab01fd9dda" title="Assignment operator. Creates a deep copy of an image.">operator=</a>(<span class="keyword">const</span> <a class="code" href="classipl_1_1Image.html" title="Encapsulates all data, associated with a particular image and provides basic image processing operati...">Image</a>&amp; other);
-<a name="l00074"></a>00074 
-<a name="l00079"></a>00079         <span class="keyword">static</span> ImagePtr <a class="code" href="classipl_1_1Image.html#a79eb7a364c397be0fa9f7d8d792004b7" title="Creates image from a bitmap file.">fromBitmap</a>(<span class="keyword">const</span> std::string&amp; fileName);
-<a name="l00080"></a>00080 
-<a name="l00085"></a>00085         <span class="keyword">static</span> ImagePtr <a class="code" href="classipl_1_1Image.html#a79eb7a364c397be0fa9f7d8d792004b7" title="Creates image from a bitmap file.">fromBitmap</a>(<span class="keyword">const</span> std::istream&amp; source);
-<a name="l00086"></a>00086         
-<a name="l00090"></a>00090         <span class="keyword">static</span> ImagePtr <a class="code" href="classipl_1_1Image.html#afd630b7530768e254cef83887bc41515" title="Creates image from an array with 8-bit grayscale data.">fromGrayData</a>(<a class="code" href="structipl_1_1ImageSize.html" title="Represents width and height of an image.">ImageSize</a> size, <span class="keyword">const</span> uint8_t * data, <span class="keywordtype">bool</span> deep = <span class="keyword">true</span>);
-<a name="l00091"></a>00091 
-<a name="l00095"></a>00095         <span class="keyword">static</span> ImagePtr <a class="code" href="classipl_1_1Image.html#ae3344876efe13b7412f562aa44ace89f" title="Creates image from an array with RGB24 data.">fromRGB24Data</a>(<a class="code" href="structipl_1_1ImageSize.html" title="Represents width and height of an image.">ImageSize</a> size, <span class="keyword">const</span> uint8_t * data, <span class="keywordtype">bool</span> deep = <span class="keyword">true</span>);
+<a name="l00040"></a><a class="code" href="namespaceipl.html#ab3ec5a63ba3d76c0f5e35b7c8595ef32">00040</a>     <span class="keyword">enum</span> <a class="code" href="namespaceipl.html#ab3ec5a63ba3d76c0f5e35b7c8595ef32" title="Available image formats.">ImageFormat</a>
+<a name="l00041"></a>00041     {
+<a name="l00042"></a>00042         FORMAT_GRAY = (uint8_t)0, 
+<a name="l00043"></a><a class="code" href="namespaceipl.html#ab3ec5a63ba3d76c0f5e35b7c8595ef32ac807b5b69d6a62e4d1e62175439e92ca">00043</a>         <a class="code" href="namespaceipl.html#ab3ec5a63ba3d76c0f5e35b7c8595ef32ac807b5b69d6a62e4d1e62175439e92ca" title="8-bit grayScale">FORMAT_RGB24</a>,             
+<a name="l00044"></a><a class="code" href="namespaceipl.html#ab3ec5a63ba3d76c0f5e35b7c8595ef32a0e0667ab94da0c9d2febbb5a9201e2c5">00044</a>         <a class="code" href="namespaceipl.html#ab3ec5a63ba3d76c0f5e35b7c8595ef32a0e0667ab94da0c9d2febbb5a9201e2c5" title="Bitmap 24.">FORMAT_RGB565</a>,            
+<a name="l00045"></a><a class="code" href="namespaceipl.html#ab3ec5a63ba3d76c0f5e35b7c8595ef32adae11119e2524e2d0010a008dc7e734a">00045</a>         <a class="code" href="namespaceipl.html#ab3ec5a63ba3d76c0f5e35b7c8595ef32adae11119e2524e2d0010a008dc7e734a" title="16 bit bitmap">FORMAT_YUV420SP</a>           
+<a name="l00046"></a>00046     };
+<a name="l00047"></a>00047 
+<a name="l00051"></a><a class="code" href="structipl_1_1ImageSize.html">00051</a>     <span class="keyword">struct </span><a class="code" href="structipl_1_1ImageSize.html" title="Represents width and height of an image.">ImageSize</a>
+<a name="l00052"></a>00052     {
+<a name="l00054"></a>00054         <a class="code" href="structipl_1_1ImageSize.html#a40ad507610dd2955d896c94a218061fd" title="Initializes with zero values.">ImageSize</a>(uint16_t width, uint16_t height);
+<a name="l00055"></a>00055 
+<a name="l00057"></a>00057         <a class="code" href="structipl_1_1ImageSize.html#a40ad507610dd2955d896c94a218061fd" title="Initializes with zero values.">ImageSize</a>();
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059         <span class="keywordtype">bool</span> operator == (<a class="code" href="structipl_1_1ImageSize.html" title="Represents width and height of an image.">ImageSize</a> other);
+<a name="l00060"></a>00060 
+<a name="l00061"></a>00061         uint16_t w; 
+<a name="l00062"></a><a class="code" href="structipl_1_1ImageSize.html#a31ec0e02678a4114a95076a60a2a24af">00062</a>         uint16_t <a class="code" href="structipl_1_1ImageSize.html#a31ec0e02678a4114a95076a60a2a24af" title="width">h</a>; 
+<a name="l00063"></a>00063     };
+<a name="l00064"></a>00064 
+<a name="l00072"></a><a class="code" href="classipl_1_1Image.html">00072</a>     <span class="keyword">class </span><a class="code" href="classipl_1_1Image.html" title="Encapsulates all data, associated with a particular image and provides basic image processing operati...">Image</a>
+<a name="l00073"></a>00073     {
+<a name="l00074"></a>00074     <span class="keyword">public</span>:
+<a name="l00075"></a>00075 
+<a name="l00077"></a>00077         <a class="code" href="classipl_1_1Image.html#a48b52d90c714c819ad6cddbc2768077f" title="Default constructor. Creates an empty image.">Image</a>();
+<a name="l00078"></a>00078 
+<a name="l00080"></a>00080         <a class="code" href="classipl_1_1Image.html#a48b52d90c714c819ad6cddbc2768077f" title="Default constructor. Creates an empty image.">Image</a> (<span class="keyword">const</span> <a class="code" href="classipl_1_1Image.html" title="Encapsulates all data, associated with a particular image and provides basic image processing operati...">Image</a>&amp;);
+<a name="l00081"></a>00081 
+<a name="l00083"></a>00083         <a class="code" href="classipl_1_1Image.html" title="Encapsulates all data, associated with a particular image and provides basic image processing operati...">Image</a>&amp; <a class="code" href="classipl_1_1Image.html#a802e130e12e6bcd8961c3aab01fd9dda" title="Assignment operator. Creates a deep copy of an image.">operator=</a>(<span class="keyword">const</span> <a class="code" href="classipl_1_1Image.html" title="Encapsulates all data, associated with a particular image and provides basic image processing operati...">Image</a>&amp; other);
+<a name="l00084"></a>00084 
+<a name="l00089"></a>00089         <span class="keyword">static</span> ImagePtr <a class="code" href="classipl_1_1Image.html#a79eb7a364c397be0fa9f7d8d792004b7" title="Creates image from a bitmap file.">fromBitmap</a>(<span class="keyword">const</span> std::string&amp; fileName);
+<a name="l00090"></a>00090 
+<a name="l00095"></a>00095         <span class="keyword">static</span> ImagePtr <a class="code" href="classipl_1_1Image.html#a79eb7a364c397be0fa9f7d8d792004b7" title="Creates image from a bitmap file.">fromBitmap</a>(<span class="keyword">const</span> std::istream&amp; source);
 <a name="l00096"></a>00096 
-<a name="l00100"></a>00100         <span class="keyword">static</span> ImagePtr <a class="code" href="classipl_1_1Image.html#abafd7caada828ae76251efa727729e2a" title="Creates image from camera.">fromCamera</a>();
-<a name="l00101"></a>00101         
-<a name="l00105"></a>00105         uint8_t * <a class="code" href="classipl_1_1Image.html#a5ffdb8d6366aaab7c1927a440a1746e6" title="Provides access to raw grayscale data.">grayScale</a>();
-<a name="l00106"></a>00106 
-<a name="l00110"></a>00110         uint8_t * <a class="code" href="classipl_1_1Image.html#afd049935ba96ca692b0275e58a65d1c1" title="Provides access to raw RGB24 data.">RGB24</a>();
-<a name="l00111"></a>00111 
-<a name="l00115"></a>00115         <span class="keywordtype">void</span> <a class="code" href="classipl_1_1Image.html#a5ffdb8d6366aaab7c1927a440a1746e6" title="Provides access to raw grayscale data.">grayScale</a>(uint8_t * dst) <span class="keyword">const</span>;
-<a name="l00116"></a>00116 
-<a name="l00120"></a>00120         <span class="keywordtype">void</span> <a class="code" href="classipl_1_1Image.html#afd049935ba96ca692b0275e58a65d1c1" title="Provides access to raw RGB24 data.">RGB24</a>(uint8_t * dst) <span class="keyword">const</span>;
-<a name="l00121"></a>00121 
-<a name="l00122"></a>00122         ~<a class="code" href="classipl_1_1Image.html" title="Encapsulates all data, associated with a particular image and provides basic image processing operati...">Image</a>();
-<a name="l00123"></a>00123 
-<a name="l00124"></a>00124     <span class="keyword">private</span>:
-<a name="l00125"></a>00125         <span class="keywordtype">void</span> copyImage(<span class="keyword">const</span> <a class="code" href="classipl_1_1Image.html" title="Encapsulates all data, associated with a particular image and provides basic image processing operati...">Image</a>&amp; other);
+<a name="l00100"></a>00100         <span class="keyword">static</span> ImagePtr <a class="code" href="classipl_1_1Image.html#a8b45b7ea9d7e7164677f57f5cb743812" title="Creates image from an array with data.">fromMemory</a>(<a class="code" href="structipl_1_1ImageSize.html" title="Represents width and height of an image.">ImageSize</a> size, 
+<a name="l00101"></a>00101                                    <span class="keyword">const</span> uint8_t * <a class="code" href="classipl_1_1Image.html#a5fb1ce4497de2afbfd826f877191a712" title="Provides access to raw data.">data</a>,
+<a name="l00102"></a>00102                                    <a class="code" href="namespaceipl.html#ab3ec5a63ba3d76c0f5e35b7c8595ef32" title="Available image formats.">ImageFormat</a> format,
+<a name="l00103"></a>00103                                    <span class="keywordtype">bool</span> deep = <span class="keyword">true</span>);
+<a name="l00104"></a>00104 
+<a name="l00108"></a>00108         <span class="keyword">static</span> ImagePtr <a class="code" href="classipl_1_1Image.html#abafd7caada828ae76251efa727729e2a" title="Creates image from camera.">fromCamera</a>();
+<a name="l00109"></a>00109         
+<a name="l00115"></a>00115         <span class="keyword">static</span> uint8_t <a class="code" href="classipl_1_1Image.html#adbeb39b88deeee6e888d7a5c63a1a1b5" title="Get number of bits per pixel for a format f.">formatDepth</a>(<a class="code" href="namespaceipl.html#ab3ec5a63ba3d76c0f5e35b7c8595ef32" title="Available image formats.">ImageFormat</a> f);
+<a name="l00119"></a>00119         uint8_t * <a class="code" href="classipl_1_1Image.html#a5fb1ce4497de2afbfd826f877191a712" title="Provides access to raw data.">data</a>();
+<a name="l00120"></a>00120 
+<a name="l00125"></a>00125         <span class="keywordtype">void</span> <a class="code" href="classipl_1_1Image.html#a5fb1ce4497de2afbfd826f877191a712" title="Provides access to raw data.">data</a>(uint8_t * dst) <span class="keyword">const</span>;
 <a name="l00126"></a>00126 
-<a name="l00127"></a>00127         uint8_t * m_grayScale;
-<a name="l00128"></a>00128         uint8_t * m_RGB24;
-<a name="l00129"></a>00129 
-<a name="l00130"></a>00130         <a class="code" href="structipl_1_1ImageSize.html" title="Represents width and height of an image.">ImageSize</a> m_size;
-<a name="l00131"></a>00131     
-<a name="l00132"></a>00132     }; <span class="comment">// class Image</span>
-<a name="l00133"></a>00133 
-<a name="l00134"></a>00134 } <span class="comment">// namespace ipl</span>
+<a name="l00127"></a>00127         ~<a class="code" href="classipl_1_1Image.html" title="Encapsulates all data, associated with a particular image and provides basic image processing operati...">Image</a>();
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129     <span class="keyword">private</span>:
+<a name="l00130"></a>00130         <span class="keywordtype">void</span> copyImage(<span class="keyword">const</span> <a class="code" href="classipl_1_1Image.html" title="Encapsulates all data, associated with a particular image and provides basic image processing operati...">Image</a>&amp; other);
+<a name="l00131"></a>00131 
+<a name="l00132"></a>00132         uint8_t * m_data;
+<a name="l00133"></a>00133         <a class="code" href="structipl_1_1ImageSize.html" title="Represents width and height of an image.">ImageSize</a> m_size;
+<a name="l00134"></a>00134         <a class="code" href="namespaceipl.html#ab3ec5a63ba3d76c0f5e35b7c8595ef32" title="Available image formats.">ImageFormat</a> m_format;
 <a name="l00135"></a>00135 
-<a name="l00136"></a>00136 <span class="preprocessor">#endif //IPL_IMAGE_H</span>
+<a name="l00136"></a>00136     
+<a name="l00137"></a>00137     }; <span class="comment">// class Image</span>
+<a name="l00138"></a>00138 
+<a name="l00139"></a>00139 } <span class="comment">// namespace ipl</span>
+<a name="l00140"></a>00140 
+<a name="l00141"></a>00141 <span class="preprocessor">#endif //IPL_IMAGE_H</span>
 </pre></div></div>
 </div>
 <!-- window showing the filter options -->
@@ -125,7 +131,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -134,7 +140,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 10 2013 14:18:11 by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 13 2013 21:57:56 by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
