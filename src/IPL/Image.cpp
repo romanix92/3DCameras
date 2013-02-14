@@ -54,6 +54,7 @@ namespace ipl
     void Image::copyImage(const Image& other)
     {
         const size_t pixNum = other.m_size.w * other.m_size.h;
+        m_format = other.m_format;
         bool needRealloc = false;
         if (pixNum > m_size.w * m_size.h)
             needRealloc = true;
@@ -119,9 +120,12 @@ namespace ipl
         default:
             return 0;
         }
-
     }
 
+    uint8_t Image::format()
+    {
+        return m_format;
+    }
 
     ImageSize::ImageSize()
     {

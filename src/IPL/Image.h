@@ -113,6 +113,12 @@ namespace ipl
         /// \param[in] f A supported format
         /// \return
         static uint8_t formatDepth(ImageFormat f);
+
+        /// \brief Get image format
+        ///
+        /// \return Format
+        uint8_t format();
+
         /// \brief Provides access to raw data
         ///
         /// \return a pointer to internal data buffer.

@@ -5,5 +5,7 @@ class ImageTest : public Test::Suite
 public:
     ImageTest();
 private:
-    void ImageCopyTest();
+    void imageCopyTest();
+    void fromMemoryTest();
+    void dataCopyTest();
 };
