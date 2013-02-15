@@ -84,7 +84,6 @@
     <ClInclude Include="..\Image.h" />
     <ClInclude Include="..\ImageCorrector.h" />
     <ClInclude Include="..\ProjectiveTransformations.h" />
-    <ClInclude Include="Matrix3x3.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Image.cpp" />
