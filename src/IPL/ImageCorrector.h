@@ -26,17 +26,16 @@
 #define IPL_IMAGE_CORRECTOR_H
 
 #include "Image.h"
+#include "Homography.h"
 
 namespace ipl
 {
-    class Homography;
-
     /// \enum CorrectionAlgorithms
     ///
     /// \brief Available algorithms for image correction
     enum CorrectionAlgorithm
     {
-        FAST_Features = (uint8_t)0;
+        FAST_Features = (uint8_t)0
     };
 
     /// \class ImageCorrector
@@ -44,18 +43,25 @@ namespace ipl
     /// \brief Calculates homography to compensate
     /// the distortions made by the second camera using
     /// a reference image.
-    /// 
-    /// \todo Think if this should be a class.
-    static class ImageCorrector
+    class ImageCorrector
     {
     public:
+        /// \brief Singleton pattern
+        ImageCorrector* instance();
         /// \brief Find a homography to warp a frame so, that it
         /// would be as if it was taken from a well-positioned camera.
         /// NVI (template method) pattern
-        static Homography calculateCorrection(const ImagePtr reference, const ImagePtr distorted, CorrectionAlgorithm);
+        Homography calculateCorrection(const ImagePtr& reference, const ImagePtr& distorted, CorrectionAlgorithm);
     protected:
-        static virtual Homography FASTCorrection(const ImagePtr reference, const ImagePtr distorted);
+        virtual Homography FASTCorrection(const ImagePtr& reference, const ImagePtr& distorted);
+
+        static ImageCorrector* m_instance;
+
+        ImageCorrector(const ImageCorrector&);
+        ImageCorrector& operator=(const ImageCorrector&);
+        ImageCorrector(){};
+        ~ImageCorrector();
     };
-} //namespace ipl
+} // namespace ipl
 
 #endif //IPL_IMAGE_CORRECTOR_H

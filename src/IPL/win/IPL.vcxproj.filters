@@ -30,9 +30,15 @@
     <ClInclude Include="..\ProjectiveTransformations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Homography.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\ImageCorrector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

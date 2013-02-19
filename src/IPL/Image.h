@@ -130,6 +130,16 @@ namespace ipl
         /// dst must be allocated before being passed to this method.
         void data(uint8_t * dst) const;
 
+        /// \return image width in pixels
+        inline uint16_t width() const { return m_size.w; };
+
+        // \return image heights in pixels
+        inline uint16_t height() const { return m_size.h; };
+
+        /// \return Image width and height
+        inline ImageSize size() const { return m_size; };
+
+        /// \brief Destructor. Deletes data.
         ~Image();
 
     private:
