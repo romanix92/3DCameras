@@ -27,7 +27,33 @@
 
 namespace ipl
 {
-    class Homography{};
+    class Homography
+    {
+    public:
+        
+        /// \brief Initialize with identity matrix
+        Homography();
+
+        /// \brief Init with float array (row major)
+        ///
+        /// \param[in] data input data
+        Homography( float* data);
+
+        /// \brief Init each element explicitly
+        ///
+        /// \param[in] e11..e33 elements
+        Homography( float e11, float e12, float e13,
+                    float e21, float e22, float e23,
+                    float e31, float e32, float e33 );
+        /// \brief Access to internal data
+        float * data();
+
+        /// \brief get access to element by index
+        float& operator()(int row, int col);
+
+    private:
+        float m_data[9];
+    };
 }// namespace ipl
 
 #endif //IPL_HOMOGRAPHY_H
