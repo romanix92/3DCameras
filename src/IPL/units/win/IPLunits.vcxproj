@@ -86,10 +86,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\HomographyTest.cpp" />
     <ClCompile Include="..\ImageTests.cpp" />
     <ClCompile Include="..\test_entry.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\HomographyTest.h" />
     <ClInclude Include="..\ImageCorrectorTest.h" />
     <ClInclude Include="..\ImageTests.h" />
     <ClInclude Include="..\TestUtils.h" />

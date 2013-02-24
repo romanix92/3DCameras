@@ -46,7 +46,7 @@ namespace ipl
                     float e21, float e22, float e23,
                     float e31, float e32, float e33 );
         /// \brief Access to internal data
-        float * data();
+        inline float * data() { return m_data; };
 
         /// \brief get access to element by index
         float& operator()(int row, int col);
