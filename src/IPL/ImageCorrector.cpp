@@ -38,7 +38,7 @@ ImageCorrector::~ImageCorrector()
 
 Homography ImageCorrector::FASTCorrection(const ImagePtr& reference, const ImagePtr& distorted)
 {
-    assert(reference->format() == FORMAT_GRAY && distorted->format() == FORMAT_GRAY);
+    /*assert(reference->format() == FORMAT_GRAY && distorted->format() == FORMAT_GRAY);
     assert(reference->width() & 7 == 0 && reference->height() & 7 == 0);
     const int maxNumCorn = 1024;
     uint32_t numCornRef, numCornDist;
@@ -53,6 +53,6 @@ Homography ImageCorrector::FASTCorrection(const ImagePtr& reference, const Image
     //TODO
 
     fcvMemFree(cornersDist);
-    fcvMemFree(cornersRef);
+    fcvMemFree(cornersRef);*/
     return Homography();
 }
